@@ -1,0 +1,22 @@
+#Redirect www qua non-www bằng htaccess
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.ahihiprogramming.vn$
+RewriteRule (.*) http://ahihiprogramming.vn/$1 [R=301,L]
+
+#Tạo trang báo lỗi mang màu sắc cá nhân
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+
+
+#. product.php?id=12 —> product-12
+RewriteRule ^khoa-hoc\/([0-9a-zA-Z-]+)$ course.php?slug=$1
+RewriteRule ^topic\/([0-9a-zA-Z-]+)$ topic.php?slug=$1
+
+RewriteRule ^watch\/([0-9a-zA-Z-]+)?~([0-9a-zA-Z-]+)?\/start$ course_videos.php?course=$1&id=$2&start
+RewriteRule ^watch\/([0-9a-zA-Z-]+)?~([0-9a-zA-Z-]+)?$ course_videos.php?course=$1&id=$2
+
+RewriteRule ^lop-offline$ offline_courses.php
+RewriteRule ^lop-offline\/lap-trinh-web$ programming_basic.php
+RewriteRule ^lop-offline\/lap-trinh-mobile$ programming_intermediate.php
+RewriteRule ^lop-offline\/nen-tang-lap-trinh$ programming_advanced.php
